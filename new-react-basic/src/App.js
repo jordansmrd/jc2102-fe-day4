@@ -46,22 +46,22 @@ const list = [
 
 const datas = [
   {
-    tgl: "6 juni 2022",
+    tgl: new Date(),
     action: "jadi pengamen keliling",
     status: true,
   },
   {
-    tgl: "6 juni 2022",
+    tgl: new Date(),
     action: "makan indomie goreng",
     status: false,
   },
   {
-    tgl: "7 juni 2022",
+    tgl: new Date(),
     action: "cuci Kamar Mandi",
     status: true,
   },
   {
-    tgl: "7 juni 2022",
+    tgl: new Date(),
     action: "ngegym 10 jam ",
     status: true,
   },
