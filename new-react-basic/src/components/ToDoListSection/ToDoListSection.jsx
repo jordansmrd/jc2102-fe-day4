@@ -14,16 +14,21 @@ function ToDoListSection(props){
     return (
         <Card>
             <CardBody>
-            <CardTitle> {props.title}</CardTitle>
+            <CardTitle className="fw-bold"> {props.tgl}</CardTitle>
             <div style={{ display:  "flex" , justifyContent: "space-between" }}>
                 
             <CardText> {props.action}</CardText>
 
+                <div>
                 {
                     myStatus==true ?
-                    (<Button color="success" onClick={changeStatus}> Done</Button>) :
-                    (<Button color="danger" onClick={changeStatus}> On Going</Button>)
+                    <Button color="success" onClick={changeStatus}> Done</Button> :
+                    <Button color="warning" onClick={changeStatus}> On Going</Button>
                 }
+                {/* {" "}
+                <Button color="danger" onClick={changeStatus}> Delete</Button> */}
+
+                </div>
 
                 </div>
 

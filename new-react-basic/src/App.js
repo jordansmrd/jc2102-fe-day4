@@ -2,10 +2,8 @@ import "./assets/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BandSection from "./components/BandSection/BandSection";
 import Navbar from "./components/Navbar/Navbar";
-import ClassComponent from "./components/ClassComponent/ClassComponent";
 import ContentCard from "./components/ContentCard/ContentCard";
 import BandContainerSection from "./components/BandContainerSection/BandContainerSection";
-import ToDoList from "./components/ToDoList/ToDoList";
 import { useState } from "react";
 import { Button, Input } from "reactstrap";
 import ToDoListSection from "./components/ToDoListSection/ToDoListSection";
@@ -48,22 +46,22 @@ const list = [
 
 const datas = [
   {
-    title: "kerja",
+    tgl: "6 juni 2022",
     action: "jadi pengamen keliling",
     status: true,
   },
   {
-    title: "makan",
+    tgl: "6 juni 2022",
     action: "makan indomie goreng",
     status: false,
   },
   {
-    title: "kerja",
+    tgl: "7 juni 2022",
     action: "cuci Kamar Mandi",
     status: true,
   },
   {
-    title: "olahraga",
+    tgl: "7 juni 2022",
     action: "ngegym 10 jam ",
     status: true,
   },
@@ -86,14 +84,6 @@ function App() {
   function changeUsername() {
     setUsername("bukan udin");
   }
-
-  const data = [
-    <>
-      <ContentCard /> <ContentCard />
-      <ContentCard />
-    </>,
-    "",
-  ];
 
   // function setUser() {
   //   setUsername("ayam");
@@ -121,7 +111,7 @@ function App() {
         {datas.map((val) => {
           return (
             <ToDoListSection
-              title={val.title}
+              tgl={val.tgl}
               action={val.action}
               status={val.status}
             />
@@ -147,8 +137,6 @@ function App() {
           {" "}
           change udin
         </button> */}
-
-        {/* <ToDoList title="jordan" action="makan ayam" isDone={false} /> */}
       </div>
       {/* </div> */}
       {/* </div> */}
