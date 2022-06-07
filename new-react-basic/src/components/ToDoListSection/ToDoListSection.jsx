@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Card, CardBody, CardTitle, CardText, Button} from "reactstrap"
+import moment from "moment";
 
 
 function ToDoListSection(props){
@@ -14,7 +15,8 @@ function ToDoListSection(props){
     return (
         <Card>
             <CardBody>
-            <CardTitle className="fw-bold"> {props.tgl}</CardTitle>
+            <CardTitle className="fw-bold">
+                {moment(props.date).format("DD MMMM YYYY")}</CardTitle>
             <div style={{ display:  "flex" , justifyContent: "space-between" }}>
                 
             <CardText> {props.action}</CardText>
@@ -22,11 +24,10 @@ function ToDoListSection(props){
                 <div>
                 {
                     myStatus==true ?
-                    <Button color="success" onClick={changeStatus}> Done</Button> :
-                    <Button color="warning" onClick={changeStatus}> On Going</Button>
+                    <Button color="success"  className="mx-2" onClick={changeStatus}> Done</Button> :
+                    <Button color="warning"  className="mx-2" onClick={changeStatus}> On Going</Button>
                 }
-                {/* {" "}
-                <Button color="danger" onClick={changeStatus}> Delete</Button> */}
+                <Button color="danger"  className="mx-2" onClick={changeStatus}> Delete</Button> 
 
                 </div>
 
