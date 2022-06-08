@@ -81,21 +81,85 @@ function App() {
 
   const [myUsername, setUsername] = useState("Udin");
 
+  const [todoList, setTodoList] = useState([...datas]);
+
   function changeUsername() {
     setUsername("bukan udin");
+  }
+
+  const [inputValues, setInputValues] = useState({
+    todoInput: "",
+    dateInput: "",
+  });
+
+  function TodoListRender() {
+    return datas.map((val, idx) => {
+      return (
+        <ToDoListSection
+          tgl={val.tgl}
+          action={val.action}
+          status={val.status}
+          deleteItem={() => deleteTodoItem(idx)}
+          toggleStatus={() => toggleTodoStatus(idx)}
+        />
+      );
+    });
   }
 
   // function setUser() {
   //   setUsername("ayam");
   // }
 
-  // function inputHandler(event) {
-  //   const { value } = event.target;
-  //   console.log(value);
+  function inputHandler(event) {
+    const { value, name } = event.target;
 
-  //   setToDoValue(value);
-  // }
+    setInputValues({
+      ...inputValues,
+      [name]: value,
+    });
+  }
 
+  function addTodoItem() {
+    const newTodoArray = [...todoList];
+
+    newTodoArray.push({
+      tgl: inputValues.dateInput,
+      action: inputValues.todoInput,
+      status: false,
+    });
+
+    setTodoList(newTodoArray);
+  }
+
+  function deleteTodoItem(index) {
+    const deleteTodoArray = [...todoList];
+
+    deleteTodoArray.splice(index, 1);
+
+    setTodoList(deleteTodoArray);
+  }
+
+  function toggleTodoStatus(index) {
+    const duplicateTodoArray = [...todoList];
+
+    duplicateTodoArray[index].status = !duplicateTodoArray[index].status;
+
+    setTodoList(duplicateTodoArray);
+  }
+
+  function renderToDo() {
+    return todoList.map((val, idx) => {
+      return (
+        <ToDoListSection
+          tgl={val.tgl}
+          action={val.action}
+          status={val.status}
+          deleteItem={() => deleteTodoItem(idx)}
+          toggleStatus={() => toggleTodoStatus(idx)}
+        />
+      );
+    });
+  }
   return (
     <>
       {/* <Navbar /> */}
@@ -107,17 +171,20 @@ function App() {
             <Input onChange={inputHandler} />
           </div> */}
 
-      <div className="col-4 offset-4 p-3">
-        {datas.map((val) => {
-          return (
-            <ToDoListSection
-              tgl={val.tgl}
-              action={val.action}
-              status={val.status}
-            />
-          );
-        })}
+      <div className="container">
+        <div className="row mt-3 mx-2">
+          <div className="offset-3 col-5">
+            <Input name="todoInput" onChange={inputHandler} />
+            <Input name="dateInput" onChange={inputHandler} type="date" />
+          </div>
+          <div className="col-2">
+            <Button onClick={addTodoItem} color="success">
+              Add To do
+            </Button>
+          </div>
+        </div>
 
+        <div className="col-5 offset-3 p-3 ">{renderToDo()}</div>
         {/* {list.map((val) => {
           return (
             <ContentCard
